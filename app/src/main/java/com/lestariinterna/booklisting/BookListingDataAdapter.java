@@ -41,7 +41,7 @@ public class BookListingDataAdapter extends ArrayAdapter<BookListingData> {
         //Get description
         TextView description = (TextView)dataItem.findViewById(R.id.Description);
         description.setText(currentData.getDescription());
-
+        //Get smallthumbnail
         ImageView thumbnail = (ImageView)dataItem.findViewById(R.id.bookSmallThumbnail);
         if(currentData.getSmallThumbnailUrl()!= null){
         thumbnail.setImageBitmap(currentData.getSmallThumbnailUrl());}

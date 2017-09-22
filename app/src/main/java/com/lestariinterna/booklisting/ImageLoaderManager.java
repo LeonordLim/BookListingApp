@@ -1,7 +1,6 @@
 package com.lestariinterna.booklisting;
 
 import android.app.LoaderManager;
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,12 +13,12 @@ import android.util.Log;
 public class  ImageLoaderManager extends AppCompatActivity implements android.app.LoaderManager.LoaderCallbacks<Bitmap> {
 
     private String ImageAddress;
-    private Context contextl;
+    //private Context contextl;
     public Bitmap mBitmap;
 
 
-    public ImageLoaderManager(Context context,String url){
-        contextl = context;
+    public ImageLoaderManager(String url){
+       // contextl = context;
         ImageAddress = url;
         Log.v("ImageLoaderManager","ImageAdress"+ImageAddress);
     }

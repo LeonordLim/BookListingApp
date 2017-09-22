@@ -40,8 +40,8 @@ public class BookListingActivityFragment extends Fragment {
                 BookListingListFragment BookListView = new BookListingListFragment();
                 BookListView.setArguments(bundle);
 
-                //Replace the layout in activity_book_listing with listView layout,
-                getFragmentManager().beginTransaction().replace(R.id.activity_book_listing_Frame,BookListView)
+                //Replace the layout with the container id in book_listing_main_fragment
+                getFragmentManager().beginTransaction().replace(R.id.container,BookListView)
                         .addToBackStack(null)
                         .commit();
 //                List<BookListingData> test = QueryUtils.extractFromJson(JsonExample);

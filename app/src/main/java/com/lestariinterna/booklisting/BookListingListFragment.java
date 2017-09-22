@@ -70,6 +70,8 @@ public class BookListingListFragment extends Fragment implements LoaderManager.L
         blAdapter.clear();
         if(data !=null && !data.isEmpty()){
             blAdapter.addAll(data);
+
+
         }
 
     }

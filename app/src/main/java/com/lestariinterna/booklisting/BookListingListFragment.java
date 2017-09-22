@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import static com.lestariinterna.booklisting.BookListingActivity.LOG_TAG;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -66,6 +68,9 @@ public class BookListingListFragment extends Fragment implements LoaderManager.L
 
     @Override
     public void onLoadFinished(Loader<ArrayList<BookListingData>> loader, ArrayList<BookListingData> data) {
+        Log.i(LOG_TAG,"Test: onLoadFinished()");
+        View  progressBar = rootView.findViewById(R.id.progress_bar);
+        progressBar.setVisibility(View.GONE);
         mEmptyStateTextView.setText("No data");
         blAdapter.clear();
         if(data !=null && !data.isEmpty()){

@@ -30,7 +30,7 @@ public class BookListingAsynctaskLoader extends AsyncTaskLoader<ArrayList<BookLi
         if (mUrl == null){
             return null;
         }
-
+        Log.v("Asyntask","mUrl"+mUrl);
         ArrayList<BookListingData> bookListArray = QueryUtils.fetching(mUrl);
         Log.v("AsynTask", "url[0]" + bookListArray);
         return bookListArray;

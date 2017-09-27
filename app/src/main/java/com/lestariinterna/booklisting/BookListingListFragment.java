@@ -14,8 +14,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import static com.lestariinterna.booklisting.BookListingActivity.LOG_TAG;
-
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -25,20 +23,36 @@ public class BookListingListFragment extends Fragment implements LoaderManager.L
     private View rootView;
     private String BookUrl;
     private TextView mEmptyStateTextView;
+    private String LOG_TAG = "BLlistFragment";
 
 
     public BookListingListFragment() {
         // Required empty public constructor
     }
 
+
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putString("BookUrl",BookUrl);
+        //outState.putParcelableArrayList("BookListingData", bookListingDatas);
+        super.onSaveInstanceState(outState);
+    }
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         rootView = inflater.inflate(R.layout.book_listing_listview, container, false);
 
-        Bundle bundle = getArguments();
-        BookUrl = bundle.getString("url");
-        Log.v("Test Url", "url: " + BookUrl);
+        if(savedInstanceState!=null) {
+            BookUrl = savedInstanceState.getString("BookUrl");
+            Log.v(LOG_TAG,"SavedInstanceState not null :"+BookUrl);
+        }else{
+            Bundle bundle = getArguments();
+            BookUrl = bundle.getString("url");
+        }
         ListView listView = (ListView) rootView.findViewById(R.id.book_listing);
 
 ////        // Create a new adapter that takes an empty list of earthquakes as input
@@ -70,10 +84,11 @@ public class BookListingListFragment extends Fragment implements LoaderManager.L
     public void onLoadFinished(Loader<ArrayList<BookListingData>> loader, ArrayList<BookListingData> data) {
         Log.i(LOG_TAG,"Test: onLoadFinished()");
         View  progressBar = rootView.findViewById(R.id.progress_bar);
+        //bookListingDatas = data;
         progressBar.setVisibility(View.GONE);
         mEmptyStateTextView.setText("No data");
         blAdapter.clear();
-        if(data !=null && !data.isEmpty()){
+        if(data !=null && ! data.isEmpty()){
             blAdapter.addAll(data);
 
 

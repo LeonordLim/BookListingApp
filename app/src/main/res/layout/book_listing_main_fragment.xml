@@ -25,19 +25,19 @@
     android:layout_height="wrap_content"
     android:hint=" Search"
     android:inputType="text"
-    android:ems="10"
+    android:ems="20"
     android:id="@+id/SearchByInputET"
     />
 
-    <Button
-        android:text="Ok"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/SearchByInputET"
-        android:layout_toLeftOf="@+id/SearchByInputET"
-        android:id="@+id/okButton"
-        android:gravity="center"
-        android:layout_gravity="center_horizontal"/>
+    <!--<Button-->
+        <!--android:text="Ok"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignBottom="@+id/SearchByInputET"-->
+        <!--android:layout_toLeftOf="@+id/SearchByInputET"-->
+        <!--android:id="@+id/okButton"-->
+        <!--android:gravity="center"-->
+        <!--android:layout_gravity="center_horizontal"/>-->
 
 </LinearLayout>
 

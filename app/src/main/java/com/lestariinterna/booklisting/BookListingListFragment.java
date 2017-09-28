@@ -52,6 +52,7 @@ public class BookListingListFragment extends Fragment implements LoaderManager.L
         }else{
             Bundle bundle = getArguments();
             BookUrl = bundle.getString("url");
+            //BookUrl = new BookListingActivityFragment().mBookUrlUpdate;
         }
         ListView listView = (ListView) rootView.findViewById(R.id.book_listing);
 

@@ -8,17 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 public class BookListingActivity extends AppCompatActivity {
 
     public final static String LOG_TAG= BookListingActivity.class.getName();
-    private int result= 0;
+
     BookListingActivityFragment TellMe = new BookListingActivityFragment();
-
-
-
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putInt("test",result);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

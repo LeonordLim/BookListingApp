@@ -25,11 +25,18 @@ public class BookListingListFragment extends Fragment implements LoaderManager.L
     private TextView mEmptyStateTextView;
     private String LOG_TAG = "BLlistFragment";
 
+    BookUrlInterface mCallback;
+    public interface BookUrlInterface{
+        public void putBookUrl(String url);
+    }
 
     public BookListingListFragment() {
         // Required empty public constructor
     }
 
+    public String putBookUrl(String url){
+       return   url;
+    }
 
 
     @Override
@@ -52,7 +59,8 @@ public class BookListingListFragment extends Fragment implements LoaderManager.L
         }else{
             Bundle bundle = getArguments();
             BookUrl = bundle.getString("url");
-            //BookUrl = new BookListingActivityFragment().mBookUrlUpdate;
+
+
         }
         ListView listView = (ListView) rootView.findViewById(R.id.book_listing);
 

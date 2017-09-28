@@ -1,27 +1,63 @@
 package com.lestariinterna.booklisting;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.EditText;
 
-public class BookListingActivity extends AppCompatActivity {
+public class BookListingActivity extends AppCompatActivity{
 
-    public final static String LOG_TAG= BookListingActivity.class.getName();
+    public final static String LOG_TAG = BookListingActivity.class.getName();
+    private String mBookURL = "https://www.googleapis.com/books/v1/volumes?q=";
 
-    BookListingActivityFragment TellMe = new BookListingActivityFragment();
+
+
+    private String SearchTerm;
+    public String mBookUrlUpdate;
+    private String maxResult = "&maxResults=10";
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_book_listing);
+        setContentView(R.layout.book_listing_main_fragment);
 
-        if(savedInstanceState == null) {
-            FragmentManager fm = getSupportFragmentManager();
-            FragmentTransaction ft = fm.beginTransaction();
-            ft.replace(R.id.activity_book_listing_Frame, TellMe)
-                    .commit();
-        }
+
+        final EditText searchInput = (EditText) findViewById(R.id.SearchByInputET);
+
+
+        searchInput.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                // If the event is a key-down event on the "enter" button
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    // Perform action on key press
+                    SearchTerm = searchInput.getText().toString();
+                    String SearchTermNoSpace = SearchTerm.replace(" ", "%20");
+                    mBookUrlUpdate = mBookURL + SearchTermNoSpace + maxResult;
+                    Log.v("Test", "mBookUrlUpdate" + mBookUrlUpdate);
+                    BookListingListFragment BookListView = new BookListingListFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("url",mBookUrlUpdate);
+                    BookListView.setArguments(bundle);
+
+                    getSupportFragmentManager().beginTransaction().replace(R.id.container,BookListView).commit();
+
+                    return true;
+                }
+                return false;
+            }
+        });
+
+
+    }
+
+
+}
 //        inputText = new TextWatcher() {
 //            @Override
 //            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -51,16 +87,6 @@ public class BookListingActivity extends AppCompatActivity {
 //            }
 //        };
 //        searchInput.addTextChangedListener(inputText);
-
-    }
-    private int SimpleMath(int a, int b){
-        int result = a*b;
-        return result;
-    }
-
-
-}
-
 
 
 

@@ -22,7 +22,7 @@ public class BookListingActivityFragment extends Fragment {
     public String mBookUrlUpdate="none";
     private  String maxResult = "&maxResults=10";
     private int result=0;
-    BookListingListFragment BookListView = new BookListingListFragment();
+   
 
     public BookListingActivityFragment(){
     }
@@ -64,14 +64,17 @@ public class BookListingActivityFragment extends Fragment {
                     SearchTerm = searchInput.getText().toString();
                     String SearchTermNoSpace = SearchTerm.replace(" ", "%20");
                     mBookUrlUpdate = mBookURL + SearchTermNoSpace+maxResult;
-
+                    BookListingListFragment BookListView = new BookListingListFragment();
 
                     //Passing the url data to other fragment using bundle
                     Bundle bundle = new Bundle();
                     bundle.clear();
                     bundle.putString("url",mBookUrlUpdate);
                     BookListView.setArguments(bundle);
-                    creatingListView();
+                    //Replace the layout with the container id in book_listing_main_fragment
+                    getFragmentManager().beginTransaction().replace(container,BookListView)
+                    .addToBackStack(null)
+                    .commit(); 
                     return true;
                 }
                 return false;
@@ -97,13 +100,6 @@ public class BookListingActivityFragment extends Fragment {
         return rootView;
 
     }
-    private void creatingListView(){
-
-        //Replace the layout with the container id in book_listing_main_fragment
-        getFragmentManager().beginTransaction().replace(container,BookListView)
-                .addToBackStack(null)
-                .commit();
-
-    }
+    
 
 }
